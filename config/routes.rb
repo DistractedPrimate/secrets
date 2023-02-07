@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Point route to a controller
 
-  get "about", to: 'about#index'
+  get "about", to: 'about#index', as: :about
 
   root to: "main#index"
   # Defines the root path route ("/")
