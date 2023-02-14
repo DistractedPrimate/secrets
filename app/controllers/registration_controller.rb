@@ -9,7 +9,7 @@ class RegistrationController < ApplicationController
 
         if @user.save
             session[:user_id] = @user.id
-            msg = "Thank You for Signing Up" + @user.username
+            msg = "Thank You for Signing Up " + @user.username
             redirect_to root_path, notice: msg
         else
             render :new
