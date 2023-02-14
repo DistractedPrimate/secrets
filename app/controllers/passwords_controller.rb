@@ -11,8 +11,6 @@ class PasswordsController < ApplicationController
         else
             render :edit
         end
-
-
     end
 
     def password_params
