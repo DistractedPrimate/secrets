@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get "signup", to: 'registration#new'
   post "signup", to: 'registration#create'
 
+  post "create_post", to: 'posts#create', as: :create_secret
+
   get "password", to: 'passwords#edit'
   patch "password", to: 'passwords#update'
   

@@ -1,7 +1,50 @@
 
-<% provide(:title, @user.name) %> 
-<h1> <%= @user.username %> </h1>
+<% provide(:title, @user.username) %> 
+<h1> <%= @user.username %> ...</h1>
 
 <% if Current.user && Current.user.id == params[:id].to_i %>
-    <h3> Here are your secrets... </h3>
+    <% if @user.posts.any? %>
+        <h3> Here are your secrets</h3>
+        <ul class="list-group">
+            <% @user.posts.each do |post| %>
+                <% puts post.content %>
+                <% puts "fadsfdsaf" %>
+                <li class="list-group-item"> <%= post.content %> </li>
+            <% end %>
+        </ul>
+    <% else %>
+        <% puts "here" %>
+        <p> No Secrets Yet </p>
+    <% end %>
+<% end %>
+
+<h3> Submit a Secret </h3>
+
+<%= form_with model: @new_post, url: create_secret_path do |form| %>
+    <% if form.object.errors.any? %>
+        <div class="alert alert-danger">
+            <ul>
+            <% form.object.errors.full_messages.each do |message| %>
+                <div><li><%= message %></li></div>
+            <% end %>
+            </ul>
+        </div>
+    <% end %>
+    
+    <div class="mb-3">
+        <%= form.label :content %>
+        <br>
+        <%= form.text_field :content, class: "form_control" %>
+    </div>
+
+    <%= form.hidden_field :user_id, value: params[:id]  %>
+    <%= form.hidden_field :pinned, value: false  %>
+
+    <div class="mb-3" >
+        <%= form.submit "Send Secret", class: "btn btn-primary"%>
+    </div>
+    
+    
+    
+
 <% end %>
