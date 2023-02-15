@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Point route to a controller
 
+  resources :users
+  
   get "about", to: 'about#index', as: :about
   get "signup", to: 'registration#new'
   post "signup", to: 'registration#create'
