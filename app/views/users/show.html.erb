@@ -1,2 +1,7 @@
 
+<% provide(:title, @user.name) %> 
 <h1> <%= @user.username %> </h1>
+
+<% if Current.user && Current.user.id == params[:id].to_i %>
+    <h3> Here are your secrets... </h3>
+<% end %>
